@@ -1,0 +1,3 @@
+setting_chan_list = [
+    ('#chan', 'password') # if no password, you should add empty string
+]

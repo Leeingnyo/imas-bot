@@ -14,7 +14,6 @@ from setting import setting_chan_list
 class Bot(threading.Thread):
     irc = None
     queue = Queue()
-    chan_list = None
     chan_list = setting_chan_list
 
     def __init__(self):

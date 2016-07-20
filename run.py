@@ -1,10 +1,10 @@
 from ircbot import Bot
 from crawler import Crawler
-from dccrawler import crawl_dcinside
-from invencrawler import crawl_inven
-from rulicrawler import crawl_ruliweb
-from shuneicrawler import crawl_shunei
-from yayocrawler import crawl_yayo
+from crawler_method.dccrawler import crawl_dcinside
+from crawler_method.invencrawler import crawl_inven
+from crawler_method.rulicrawler import crawl_ruliweb
+from crawler_method.shuneicrawler import crawl_shunei
+from crawler_method.yayocrawler import crawl_yayo
 
 bot = Bot.Instance()
 crawler_list = [

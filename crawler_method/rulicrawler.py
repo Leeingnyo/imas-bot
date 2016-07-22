@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 def crawl_ruliweb():
     keywords = ['@', '아이마스', '신데마스', '밀리마스', '밀리', '신데']
-    r = requests.get('http://bbs.ruliweb.com/hobby/board/300064/')
+    r = requests.get('http://bbs.ruliweb.com/hobby/board/300064/list')
     html = r.content
     parsed = BeautifulSoup(html, 'html.parser')
     tbody = parsed.tbody

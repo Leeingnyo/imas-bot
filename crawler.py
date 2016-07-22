@@ -4,7 +4,7 @@ from queue import Queue
 
 class Crawler(threading.Thread):
 
-    def __init__(self, method, period=60, queue=None):
+    def __init__(self, method, period=60, queue=None, maximum=40):
         """
         method should return
         list((prefix, title, link, date))
@@ -15,7 +15,9 @@ class Crawler(threading.Thread):
         self.method = method
         self.period = period
         self.queue = queue
+        self.maximum = maximum
         self.prev_list = method()
+        self.prev_list.reverse()
 
     def crawl(self):
         recent_list = self.method()
@@ -24,6 +26,7 @@ class Crawler(threading.Thread):
         # push only new article
         new_link = [link for link in recent_link if link not in prev_link]
         new_list = [recent for recent in recent_list if recent[2] in new_link]
+        new_list.reverse()
 
         for new in new_list:
             info = '%s| %s %s (%s)' % new
@@ -31,7 +34,8 @@ class Crawler(threading.Thread):
                 self.queue.put({'type': 'msg', 'content': info})
             else:
                 print(info)
-        self.prev_list = recent_list
+        self.prev_list = self.prev_list + new_list
+        self.prev_list = self.prev_list[-self.maximum:]
 
     def run(self):
         while True:

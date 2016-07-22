@@ -39,5 +39,8 @@ class Crawler(threading.Thread):
 
     def run(self):
         while True:
-            self.crawl()
+            try:
+                self.crawl()
+            except Exception as e:
+                print(e)
             sleep(self.period)

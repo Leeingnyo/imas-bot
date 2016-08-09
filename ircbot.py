@@ -41,7 +41,10 @@ class Bot(threading.Thread):
                 message = packet['content']
             elif packet['type'] == 'msg':
                 print('get')
-                for c in self.chan_list:
+                chan_list = self.chan_list
+                if packet['chan'] is not None:
+                    chan_list = packet['chan']
+                for c in chan_list:
                     self.irc.sendmsg(c[0], packet['content'])
 
 if __name__ == '__main__':

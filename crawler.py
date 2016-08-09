@@ -1,3 +1,5 @@
+import traceback
+import sys
 import threading
 from time import sleep
 from queue import Queue
@@ -43,4 +45,5 @@ class Crawler(threading.Thread):
                 self.crawl()
             except Exception as e:
                 print(e)
+                print(traceback.format_exc(), file=sys.stderr, flush=True)
             sleep(self.period)

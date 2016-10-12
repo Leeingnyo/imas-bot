@@ -14,7 +14,7 @@ def crawl_shunei():
         for contents in categories_contents:
             important = important or contents == '아이돌마스터'
         for contents in categories_contents:
-            important = important or not contents == '잡담'
+            important = important and not contents == '잡담'
         if not important:
             continue
         link = item.link.string

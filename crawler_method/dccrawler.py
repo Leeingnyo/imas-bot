@@ -5,8 +5,8 @@ def crawl_dcinside():
     r = requests.get('http://gall.dcinside.com/board/lists/?id=idolmaster&page=1&exception_mode=recommend')
     html = r.content
     parsed = BeautifulSoup(html, 'html.parser')
-    thead = parsed.thead
-    articles = thead.find_all(class_='tb')
+    tbody = parsed.tbody
+    articles = tbody.find_all(class_='tb')
     reformed = []
     for article in articles:
         if article.find(class_='t_notice').string == '공지':

@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 def crawl_ruliweb():
-    keywords = ['@', '아이마스', '신데마스', '밀리마스', '밀리', '신데', '마스', '푸치']
+    keywords = ['@', '아이마스', '신데마스', '밀리마스', '밀리', '신데', '마스', '푸치', '765', '346', '876', '315', '961']
     r = requests.get('http://bbs.ruliweb.com/hobby/board/300064/list')
     html = r.content
     parsed = BeautifulSoup(html, 'html.parser')

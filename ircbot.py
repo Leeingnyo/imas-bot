@@ -40,7 +40,7 @@ class Bot(threading.Thread):
             elif packet['type'] == 'irc':
                 message = packet['content']
             elif packet['type'] == 'msg':
-                print('get')
+                print('get', datetime.now())
                 chan_list = self.chan_list
                 if packet['chan'] is not None:
                     chan_list = packet['chan']

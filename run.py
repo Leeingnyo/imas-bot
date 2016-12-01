@@ -9,20 +9,22 @@ from crawler_method.rulicrawler import crawl_ruliweb
 from crawler_method.shuneicrawler import crawl_shunei
 from crawler_method.yayocrawler import crawl_yayo
 
-from setting import setting_chan_list
+from setting import setting_chan_list, censored_chan_list
+
+censored_chan_set = set(censored_chan_list)
 
 bot = Bot.Instance()
 crawler_list = [
-    Crawler(crawl_dcinside_censored, queue=bot.queue),
-    Crawler(crawl_dcinside_765_censored, queue=bot.queue),
-    Crawler(crawl_inven, queue=bot.queue),
+    Crawler(crawl_dcinside_censored, queue=bot.queue, chan=[x for x in setting_chan_list if x in censored_chan_set]),
+    Crawler(crawl_dcinside_765_censored, queue=bot.queue, chan=[x for x in setting_chan_list if x in censored_chan_set]),
+    Crawler(crawl_inven, period=3600, queue=bot.queue),
     Crawler(crawl_ruliweb, queue=bot.queue),
     Crawler(crawl_shunei, queue=bot.queue),
     Crawler(crawl_yayo, queue=bot.queue),
 ]
 specific_crawler_list = [
-    Crawler(crawl_dcinside, queue=bot.queue, chan=[setting_chan_list[1][0]]),
-    Crawler(crawl_dcinside_765, queue=bot.queue, chan=[setting_chan_list[1][0]]),
+    Crawler(crawl_dcinside, queue=bot.queue, chan=[x for x in setting_chan_list if x not in censored_chan_set]),
+    Crawler(crawl_dcinside_765, queue=bot.queue, chan=[x for x in setting_chan_list if x not in censored_chan_set]),
 ]
 for crawler in crawler_list + specific_crawler_list:
     crawler.setDaemon(True)

@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 def crawl_dcinside_765_censored():
-    keywords = ['핫산', '그림', '만화']
+    keywords = ['핫산', '그림', '만화', 'manwha', 'manhwa']
     r = requests.get('http://gall.dcinside.com/mgallery/board/lists/?id=765pro&page=1&exception_mode=recommend')
     html = r.content
     parsed = BeautifulSoup(html, 'html.parser')

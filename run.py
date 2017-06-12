@@ -8,6 +8,7 @@ from crawler_method.invencrawler import crawl_inven
 from crawler_method.rulicrawler import crawl_ruliweb
 from crawler_method.shuneicrawler import crawl_shunei
 from crawler_method.yayocrawler import crawl_yayo
+from crawler_method.cggekijoucrawler import crawl_cggekijou
 
 from setting import setting_chan_list, censored_chan_list
 
@@ -21,6 +22,7 @@ crawler_list = [
     Crawler(crawl_ruliweb, queue=bot.queue),
     Crawler(crawl_shunei, queue=bot.queue),
     Crawler(crawl_yayo, queue=bot.queue),
+    Crawler(crawl_cggekijou, queue=bot.queue),
 ]
 specific_crawler_list = [
     Crawler(crawl_dcinside, queue=bot.queue, chan=[x for x in setting_chan_list if x not in censored_chan_set]),

@@ -6,7 +6,7 @@ from queue import Queue
 
 class Crawler(threading.Thread):
 
-    def __init__(self, method, period=60, queue=None, maximum=40, chan=None):
+    def __init__(self, method, period=60, queue=None, maximum=100, chan=None):
         """
         method should return
         list((prefix, title, link, date))

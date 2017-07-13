@@ -7,7 +7,11 @@ def crawl_dcinside_censored():
     html = r.content
     parsed = BeautifulSoup(html, 'html.parser')
     tbody = parsed.tbody
-    articles = tbody.find_all(class_='tb')
+    try:
+        articles = tbody.find_all(class_='tb')
+    except Exception as e:
+        print(e)
+        return []
     reformed = []
     for article in articles:
         if article.find(class_='t_notice').string == '공지':

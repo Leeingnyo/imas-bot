@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 def crawl_dcinside():
-    r = requests.get('http://gall.dcinside.com/board/lists/?id=idolmaster&page=1&exception_mode=recommend')
+    r = requests.get('http://gall.dcinside.com/board/lists/?id=idolmaster&page=1&exception_mode=recommend', headers={'User-Agent': ''})
     html = r.content
     parsed = BeautifulSoup(html, 'html.parser')
     tbody = parsed.tbody

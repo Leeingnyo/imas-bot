@@ -29,3 +29,6 @@ def crawl_dcinside_765_censored():
         date = article.find(class_='t_date')['title']
         reformed.append(('765념', title, link, date))
     return reformed
+
+if __name__ == '__main__':
+    print(crawl_dcinside_765_censored())

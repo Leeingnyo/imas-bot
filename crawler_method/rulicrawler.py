@@ -23,3 +23,6 @@ def crawl_ruliweb():
         date = article.find(class_='time').string.strip()
         reformed.append(('팬만게', title, link, date))
     return reformed
+
+if __name__ == '__main__':
+    print(crawl_ruliweb())

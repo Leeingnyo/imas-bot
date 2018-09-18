@@ -13,3 +13,6 @@ def crawl_cggekijou():
         date = item.find('dc:date').string
         reformed.append(('cggekijou', title, link, date))
     return reformed
+
+if __name__ == '__main__':
+    print(crawl_cggekijou())

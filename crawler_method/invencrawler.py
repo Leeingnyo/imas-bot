@@ -19,3 +19,6 @@ def crawl_inven():
         date = article.find(class_='date').string.strip()
         reformed.append(('inven', title, link, date))
     return reformed
+
+if __name__ == '__main__':
+    print(crawl_inven())

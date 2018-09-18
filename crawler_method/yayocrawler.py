@@ -20,3 +20,6 @@ def crawl_yayo():
         date = item.pubdate.string
         reformed.append(('yayo', title, link, date))
     return reformed
+
+if __name__ == '__main__':
+    print(crawl_yayo())

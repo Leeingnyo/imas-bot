@@ -1,3 +1,4 @@
+#! ../imas-crawler-env/bin/python
 from ircbot import Bot
 from crawler import Crawler
 from crawler_method.dccrawler import crawl_dcinside
@@ -25,8 +26,8 @@ crawler_list = [
     Crawler(crawl_cggekijou, queue=bot.queue),
 ]
 specific_crawler_list = [
-    Crawler(crawl_dcinside, queue=bot.queue, chan=[x for x in setting_chan_list if x not in censored_chan_set]),
-    Crawler(crawl_dcinside_765, queue=bot.queue, chan=[x for x in setting_chan_list if x not in censored_chan_set]),
+    Crawler(crawl_dcinside, maximum=80, queue=bot.queue, chan=[x for x in setting_chan_list if x not in censored_chan_set]),
+    Crawler(crawl_dcinside_765, maximum=80, queue=bot.queue, chan=[x for x in setting_chan_list if x not in censored_chan_set]),
 ]
 for crawler in crawler_list + specific_crawler_list:
     crawler.setDaemon(True)

@@ -6,7 +6,7 @@ from queue import Queue
 
 class Crawler(threading.Thread):
 
-    def __init__(self, method, period=60, queue=None, maximum=100, chan=None):
+    def __init__(self, method, period=60, queue=None, maximum=50, chan=None):
         """
         method should return
         list((prefix, title, link, date))
@@ -21,9 +21,13 @@ class Crawler(threading.Thread):
         self.prev_list = method()
         self.prev_list.reverse()
         self.chan=chan
+        print('init')
 
     def crawl(self):
         recent_list = self.method()
+        if len(self.prev_list) == 0:
+            self.prev_lsit = recent_list
+            return
         prev_link = [prev[2] for prev in self.prev_list]
         recent_link = [recent[2] for recent in recent_list]
         # push only new article

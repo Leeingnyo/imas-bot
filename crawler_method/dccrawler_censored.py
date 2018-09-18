@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 
 def crawl_dcinside_censored():
     keywords = ['핫산', '그림', '만화']
+    bad_keywords = ['젖', '좆', '가슴', '노출', '정액', '무현', '찌찌', '자위']
     r = requests.get('http://gall.dcinside.com/board/lists/?id=idolmaster&page=1&exception_mode=recommend', headers={'User-Agent': ''})
     html = r.content
     parsed = BeautifulSoup(html, 'html.parser')
@@ -21,6 +22,8 @@ def crawl_dcinside_censored():
         P = False
         for keyword in keywords:
             P = P or keyword in title
+        for badword in bad_keywords:
+            P = P and not badword in title
         if not P:
             continue
         date = article.find(class_='t_date')['title']

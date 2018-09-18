@@ -5,7 +5,12 @@ def crawl_inven():
     r = requests.get('http://www.inven.co.kr/board/powerbbs.php?come_idx=4103')
     html = r.content
     parsed = BeautifulSoup(html, 'html.parser')
+    board = parsed.select_one('form[name=board_list1]')
+    if board is None:
+        return []
     tbody = parsed.select_one('form[name=board_list1]').tbody
+    if tbody is None:
+        return []
     articles = tbody.select('tr.ls')
     reformed = []
     for article in articles:

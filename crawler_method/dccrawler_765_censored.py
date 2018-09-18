@@ -9,16 +9,16 @@ def crawl_dcinside_765_censored():
     parsed = BeautifulSoup(html, 'html.parser')
     tbody = parsed.tbody
     try:
-        articles = tbody.find_all(class_='tb')
+        articles = tbody.find_all(class_='ub-content')
     except Exception as e:
         print(e)
         return []
     reformed = []
     for article in articles:
-        if article.find(class_='t_notice').string == '공지':
+        if article.find(class_='gall_subject').string == '공지':
             continue
-        link = 'http://gall.dcinside.com/mgallery/board/view/?id=765pro&' + article.find(class_='t_subject').a['href'].split('&')[1]
-        title = article.find(class_='t_subject').a.string
+        link = 'http://gall.dcinside.com/765pro/' + article['data-no']
+        title = article.find(class_='gall_tit').a.text
         P = False
         for keyword in keywords:
             P = P or keyword in title
@@ -26,7 +26,7 @@ def crawl_dcinside_765_censored():
             P = P and not badword in title
         if not P:
             continue
-        date = article.find(class_='t_date')['title']
+        date = article.find(class_='gall_date').string
         reformed.append(('765념', title, link, date))
     return reformed
 

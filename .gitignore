@@ -1,3 +1,4 @@
 test_*.py
 setting.py
+*.pyc
 __pycache__/

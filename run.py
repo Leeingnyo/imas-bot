@@ -10,6 +10,7 @@ from crawler_method.rulicrawler import crawl_ruliweb
 from crawler_method.shuneicrawler import crawl_shunei
 from crawler_method.yayocrawler import crawl_yayo
 from crawler_method.cggekijoucrawler import crawl_cggekijou
+from crawler_method.kawaicrawler import crawl_kawai3
 
 from setting import setting_chan_list, censored_chan_list
 
@@ -28,6 +29,7 @@ crawler_list = [
 specific_crawler_list = [
     Crawler(crawl_dcinside, maximum=80, queue=bot.queue, chan=[x for x in setting_chan_list if x not in censored_chan_set]),
     Crawler(crawl_dcinside_765, maximum=80, queue=bot.queue, chan=[x for x in setting_chan_list if x not in censored_chan_set]),
+    Crawler(crawl_kawai3, maximum=80, queue=bot.queue, chan=[x for x in setting_chan_list if x not in censored_chan_set]),
 ]
 for crawler in crawler_list + specific_crawler_list:
     crawler.setDaemon(True)

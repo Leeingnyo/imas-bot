@@ -13,7 +13,11 @@ def crawl_dcinside():
         return []
     reformed = []
     for article in articles:
+        if article.find(class_='gall_num').string == '설문':
+            continue
         if article.find(class_='icon_notice') is not None:
+            continue
+        if article.get('data-no', None) is None:
             continue
         link = 'http://gall.dcinside.com/idolmaster/' + article['data-no']
         title = article.find(class_='gall_tit').a.text

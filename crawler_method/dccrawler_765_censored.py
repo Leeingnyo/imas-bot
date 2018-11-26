@@ -15,7 +15,11 @@ def crawl_dcinside_765_censored():
         return []
     reformed = []
     for article in articles:
+        if article.find(class_='gall_num').string == '설문':
+            continue
         if article.find(class_='gall_subject').string == '공지':
+            continue
+        if article.get('data-no', None) is None:
             continue
         link = 'http://gall.dcinside.com/765pro/' + article['data-no']
         title = article.find(class_='gall_tit').a.text

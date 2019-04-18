@@ -1,0 +1,86 @@
+{
+  "irc": {
+    "server": "irc-host",
+    "port": 12345,
+    "botnick": "iMaS-BOT",
+    "botname": "imasbotjs",
+    "channels": ["#channel password", "#channel2"]
+  },
+  "crawlers": [
+    {
+      "name": "cggekijou",
+      "crawler": {
+        "methodName": "cggekijou"
+      },
+      "post": {
+        "prefix": "cggekijou",
+        "channels": ["channel", "#channel2"]
+      }
+    },
+    {
+      "name": "dccrawler",
+      "crawler": {
+        "methodName": "dccrawler",
+        "maximum": 100
+      },
+      "post": {
+        "prefix": "@념글",
+        "channels": ["#channel2"]
+      }
+    },
+    {
+      "name": "dccrawlerCensored",
+      "crawler": {
+        "methodName": "dccrawler",
+        "maximum": 100,
+        "keywords": ["핫산", "그림", "만화"],
+        "badwords": ["젖", "좆", "가슴", "노출", "정액", "찌찌", "자위"]
+      },
+      "post": {
+        "prefix": "@념글",
+        "channels": ["#channel"]
+      }
+    },
+    {
+      "name": "dccrawler765",
+      "crawler": {
+        "methodName": "dcminorcrawler",
+        "minorName": "765pro",
+        "maximum": 100
+      },
+      "post": {
+        "prefix": "765념",
+        "channels": ["#channel2"]
+      }
+    },
+    {
+      "name": "dccrawler765Censored",
+      "crawler": {
+        "methodName": "dcminorcrawler",
+        "minorName": "765pro",
+        "maximum": 100,
+        "keywords": ["핫산", "그림", "만화", "manwha", "manhwa"],
+        "badwords": ["젖", "좆", "가슴", "노출", "정액", "찌찌", "자위"]
+      },
+      "post": {
+        "prefix": "765념",
+        "channels": ["#channel"]
+      }
+    },
+    {
+      "name": "invencrawler"
+    },
+    {
+      "name": "kawaicrawler",
+      "crawler": {
+        "methodName": "dcminorcrawler",
+        "minorName": "kawai3",
+        "maximum": 100
+      },
+      "post": {
+        "prefix": "붕3념",
+        "channels": ["#channel2"]
+      }
+    }
+  ]
+}

@@ -28,7 +28,7 @@ bot.connect().then(() => {
 function generateSender(options) {
   return function (bot) {
     return function (item) {
-      const message = `${options.prefix}| ${item.title} ${item.link} (${item.date})`;
+      const message = `${options.prefix}| ${item.title} ${item.link} (${item.date})${item.writer ? ` (${item.writer})` : ''}`;
       options.channels.map(channel => {
         bot.send(channel, message);
       });

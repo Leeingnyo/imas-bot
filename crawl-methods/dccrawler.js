@@ -19,7 +19,8 @@ module.exports = async function ({ keywords, badwords } = {}) {
     const link = `${baseUrl}${$(item).data('no')}`;
     const title = $(item).children('.gall_tit').children('a').first().text();
     const date = $(item).children('.gall_date').first().text();
-    return { link, title, date };
+    const writer = $(item).children('.gall_writer').children('.nickname').first().text();
+    return { link, title, date, writer };
   }).filter((index, item) => {
     return (!keywords.length || keywords.find(keyword => item.title.includes(keyword)))
         && (!badwords.length || !badwords.find(keyword => item.title.includes(keyword)));

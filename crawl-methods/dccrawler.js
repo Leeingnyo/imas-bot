@@ -1,12 +1,12 @@
 const request = require('request-promise-native');
 const cheerio = require('cheerio');
 
-module.exports = async function ({ keywords, badwords } = {}) {
+module.exports = async function ({ keywords, badwords, name } = {}) {
   keywords = keywords || [];
   badwords = badwords || [];
-  const baseUrl = 'http://gall.dcinside.com/idolmaster/';
+  const baseUrl = `http://gall.dcinside.com/${name}/`;
   const result = await request.get({
-    url: 'http://gall.dcinside.com/board/lists/?id=idolmaster&page=1&exception_mode=recommend',
+    url: `http://gall.dcinside.com/board/lists/?id=${name}&page=1&exception_mode=recommend`,
     headers: { 'User-Agent': '' }
   });
   const $ = cheerio.load(result);

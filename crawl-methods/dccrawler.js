@@ -1,9 +1,10 @@
 const request = require('request-promise-native');
 const cheerio = require('cheerio');
 
-module.exports = async function ({ keywords, badwords, name } = {}) {
+module.exports = async function ({ keywords, badwords, banned, name } = {}) {
   keywords = keywords || [];
   badwords = badwords || [];
+  banned = banned || [];
   const baseUrl = `http://gall.dcinside.com/${name}/`;
   const result = await request.get({
     url: `http://gall.dcinside.com/board/lists/?id=${name}&page=1&exception_mode=recommend`,
@@ -23,7 +24,8 @@ module.exports = async function ({ keywords, badwords, name } = {}) {
     return { link, title, date, writer };
   }).filter((index, item) => {
     return (!keywords.length || keywords.find(keyword => item.title.includes(keyword)))
-        && (!badwords.length || !badwords.find(keyword => item.title.includes(keyword)));
+        && (!badwords.length || !badwords.find(keyword => item.title.includes(keyword)))
+        && (!banned.length || !banned.find(keyword => item.writer === keyword));
   });
   return Array.from(items);
 };

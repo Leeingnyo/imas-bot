@@ -5,9 +5,9 @@ module.exports = async function ({ keywords, badwords, banned, name } = {}) {
   keywords = keywords || [];
   badwords = badwords || [];
   banned = banned || [];
-  const baseUrl = `http://gall.dcinside.com/${name}/`;
+  const baseUrl = `https://gall.dcinside.com/${name}/`;
   const result = await request.get({
-    url: `http://gall.dcinside.com/board/lists/?id=${name}&page=1&exception_mode=recommend`,
+    url: `https://gall.dcinside.com/board/lists/?id=${name}&page=1&exception_mode=recommend`,
     headers: { 'User-Agent': '' }
   });
   const $ = cheerio.load(result);

@@ -4,9 +4,9 @@ const cheerio = require('cheerio');
 module.exports = async function ({ keywords, badwords, minorName } = {}) {
   keywords = keywords || [];
   badwords = badwords || [];
-  const baseUrl = `http://gall.dcinside.com/${minorName}/`;
+  const baseUrl = `https://gall.dcinside.com/${minorName}/`;
   const result = await request.get({
-    url: `http://gall.dcinside.com/mgallery/board/lists/?id=${minorName}&page=1&exception_mode=recommend`,
+    url: `https://gall.dcinside.com/mgallery/board/lists/?id=${minorName}&page=1&exception_mode=recommend`,
     headers: { 'User-Agent': '' }
   });
   const $ = cheerio.load(result);
